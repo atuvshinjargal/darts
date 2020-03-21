@@ -1,0 +1,42 @@
+<?php $this->headLink()->appendStylesheet($this->baseUrl('/css/smoothness/jquery-ui-1.7.2.custom.css')); ?>
+ <?php $this->headScript()->appendFile($this->baseUrl('/js/jquery-1.3.2.min.js')); ?>
+ <?php $this->headScript()->appendFile($this->baseUrl('/js/jquery-ui-1.7.2.custom.min.js')); ?>
+<div class="bs-docs-example">
+<?php echo $this->form;?>
+<?php echo $this->search;?>
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Тэмцээн</th>
+    <th>Үүсгэсэн огноо</th>
+    <th>Эхлэх огноо</th>
+	<th>Удирдлага</th>
+  </tr>
+<?php 
+foreach ($this->data as $user){
+	echo '<tr>';
+	echo '<td><a href="'.$this->url(array('module'=>'admin',
+											'controller'=>'book',
+											'action'=>'index',
+											'contest'=>$user['id'])).'">'.$user['name'].'</a></td>';
+	echo '<td>'.$user['date'].'</td>';
+	echo '<td>'.$user['startdate'].'</td><td>';
+	if ($user['finisdate']=='3000-00-00'){
+	echo '<a href="JavaScript:success(\''.$this->url(array('module'=>'admin',
+											'controller'=>'book',
+											'action'=>'finis',
+											'id'=>$user['id'])).'\')">Дуусгах</a>';
+	}else {echo 'Дууссан';}
+	echo '<a href="JavaScript:click(\''.$this->url(array('module'=>'admin',
+											'controller'=>'book',
+											'action'=>'delete',
+											'id'=>$user['id'])).'\')"> Устгах</a></td>';
+	
+}
+?>
+</table>
+<div class="pagination pagination-mini">
+<?php 
+	echo $this->paginationControl($this->data,'Sliding','pagination.phtml'); 
+?>
+</div>
+</div>

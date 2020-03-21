@@ -1,0 +1,69 @@
+<a href="<?php echo $this->url(array('module'=>'library',
+											'controller'=>'books',
+											'action'=>'list'))?>" ><input type="button" value="Back"></a>
+<h3>Тэмцээнийг тэргүүлэгчид</h3>
+<table class="contestList">
+  <tr>
+  	<th>Зураг</th>
+    <th>Овог</th>
+	<th>Нэр</th>
+	<th>Хожил</th>
+	<th>Хожигдол</th>
+  </tr>
+  <?php foreach ($this->players as $player){?>
+  <tr>
+ 	<td><a href="<?php echo $this->url(array('module'=>'admin',
+											'controller'=>'users',
+											'action'=>'profile',
+											'id'=>$player['id'])) ?>"><img width="20" src="<?php echo $this->baseUrl().'/data/'.$player['image']; ?>"></a></td>
+    <td><?php echo $player['firstname']?></td>
+    <td><?php echo $player['lastname']?></td>
+    <td><?php echo $player['win']?></td>
+    <td><?php echo $player['lose']?></td>
+    </tr>
+    <?php }?>
+</table>
+<h3>Тэмцээний хуваарь</h3>
+<?php echo $this->form;?>
+<?php echo $this->search;?>
+<table class="list">
+  <tr>
+    <th>Тоглолт</th>
+    <th>Зураг</th>
+    <th>Овог</th>
+	<th>Нэр</th>
+	<th>Оноо</th>
+  </tr>
+<?php 
+$pre=NULL;
+$i=1;
+foreach ($this->data as $user){
+	?>
+	<tr>
+	<?php
+	if ($user['game_id']!=$pre){ echo '<td rowspan="2">'.$i.'</td>'; $i++;}
+	echo '<td><img width="20" src="'.$this->baseUrl().'/data/'.$user['image'].'"></td>';
+	echo '<td>'.$user['firstname'].'</td>';
+	echo '<td>'.$user['lastname'].'</td>';
+	echo '<td>'.$user['score'].'</td>';
+	if ($user['liveScore']==0){
+		$shuud='Үзэх';
+	}else {
+		$shuud='Шууд* үзэх';
+	}
+	if ($user['game_id']!=$pre){
+	echo '<td rowspan="2"><a href="'.$this->url(array('module'=>'default',
+											'controller'=>'index',
+											'action'=>'game',
+											'id'=>$user['game_id'])).'">'.$shuud.'</a></td>';
+	}
+	
+	
+	?>
+	</tr>
+	<?php
+	if ($user['game_id']==$pre){echo '<td class="separator"></td>';}
+	$pre=$user['game_id'];
+}
+?>
+</table>

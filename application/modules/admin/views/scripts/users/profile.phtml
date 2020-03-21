@@ -1,0 +1,14 @@
+<input type="button" value="Back" onclick="goBack()">
+<div style="clear:both;"></div>
+<?php if ($this->user[0]['image']!=NULL){
+	echo '<img width="120" src="'.$this->baseUrl().'/data/'.$this->user[0]['image'].'">';
+	}?>
+	<h3 style="clear:both;">
+	<table>
+	<tr><td> Овог:</td><td><?php echo $this->user[0]['firstname']?></td></tr>
+	<tr><td>Нэр: </td><td><?php echo $this->user[0]['lastname']?></td></tr>
+	<tr><td>Нас: </td><td><?php echo $this->user[0]['age']?></td></tr>
+	<tr><td>Хүйс: </td><td><?php echo $this->user[0]['sex']?></td></tr>
+	<tr><td>Емайл: </td><td><?php echo $this->user[0]['email']?></td></tr>
+	<tr></table>
+	</h3>

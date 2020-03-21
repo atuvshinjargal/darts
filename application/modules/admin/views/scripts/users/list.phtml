@@ -1,0 +1,42 @@
+<div class="bs-docs-example">
+<?php echo $this->search;?>
+<br/>
+<table class="table table-bordered table-striped">
+  <tr>
+  	<th>Зураг</th>
+    <th>Хэрэглэгчийн нэр</th>
+    <th>Овог</th>
+    <th>Нэр</th>
+    <th>Нас</th>
+    <th>Хүйс</th>
+    <th>Емайл</th>
+    <th>Бүртгүүлсэн</th>
+
+  </tr>
+<?php 
+foreach ($this->data as $user){
+	echo '<tr>';
+	echo '<td>';
+	if ($user['image']!=NULL){
+	echo '<img width="40" src="'.$this->baseUrl().'/data/'.$user['image'].'">';
+	}
+	echo '</td>';
+	echo '<td><a href="'.$this->url(array('module'=>'admin',
+											'controller'=>'users',
+											'action'=>'profile',
+											'id'=>$user['id'])).'">'.$user['username'].'</a></td>';
+	echo '<td>'.$user['lastname'].'</td>';
+	echo '<td>'.$user['firstname'].'</td>';
+	echo '<td>'.$user['age'].'</td>';
+	echo '<td>'.$user['sex'].'</td>';
+	echo '<td>'.$user['email'].'</td>';
+	echo '<td>'.$user['date'].'</td>';
+}
+?>
+</table>
+<div class="pagination pagination-mini">
+<?php 
+	echo $this->paginationControl($this->data,'Sliding','pagination.phtml'); 
+?>
+</div>
+</div>

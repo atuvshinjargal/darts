@@ -1,0 +1,68 @@
+<?php echo $this->doctype(); ?>
+<html>
+<head>
+	<?php echo $this->headMeta(); ?>
+	<?php echo $this->headTitle(); ?>
+	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/main.css');?>
+	<?php echo $this->headScript()->appendFile($this->baseUrl().'/js/my.js'); ?>
+	<title>Dart league &middot; Мэдээллийн технологийн сургууль </title>
+</head>
+<body class="home">
+	<div class="wrap">
+		<div class="logo">
+			<h1><a href="." title="Home">Dart league</a></h1>
+			<p>Мэдээллийн технологийн сургууль</p>
+		</div>
+		<?php echo $this->navigation(); ?>
+	</div>
+	<div class="wrap">
+		<div class="left">
+			<?php echo $this->layout()->content; ?>
+		</div>	
+		<div class="right">
+			<h2>Тэргүүлэгчид</h2>
+			<table style="text-align: center;">
+			<tr>
+			<th colspan="2">Тамирчин</th>
+			<th>Хожил</th>
+			<th>Хожигдол</th>
+			</tr>
+			<?php foreach ($this->playerAllRate as $player){?>
+				<tr><td><a href="<?php echo $this->url(array('module'=>'admin',
+											'controller'=>'users',
+											'action'=>'profile',
+											'id'=>$player['id'])) ?>"><img width="20" src="<?php echo $this->baseUrl().'/data/'.$player['image']; ?>"></a></td>
+			<td><?php echo $player['username']?></td>
+			<td><?php echo $player['win']?></td>
+			<td><?php echo $player['lose']?></td>
+			<?php }?>
+			</table>
+			<h2>Мэдээ мэдээлэл</h2>
+			<ul>
+				<li><a href="#">”Монгол 2013” чансаа олгох тэмцээн боллоо</a></li>
+				<li><a href="#">Английн Фил Тайлор 14 дэх удаагаа Дэлхийн аварга боллоо</a></li>
+				<li><a href="#">Дартсын нээлттэй тэмцээн болно</a></li>
+				<li><a href="#">Дарт тоглох дүрэм</a></li>
+				<li><a href="#">Дартсын анхдугаар нээлттэй тэмцээн болно</a></li>
+				<li><a href="#">Дартсын лигийн уулзалт болно</a></li>
+				<li><a href="#">Тоглолт шууд дамжуулах тухай</a></li>
+			</ul>
+			<div class="tagcloud">
+				<p>
+					<span style="font-size: 1.3em"><a href="#">google</a></span>
+					<span style="font-size: 1.5em"><a href="#">css</a></span>
+					<span style="font-size: 1em"><a href="#">youtube</a></span>
+					<span style="font-size: .9em"><a href="#">apple</a></span>
+					<span style="font-size: 1.6em"><a href="#">web 2.0</a></span>
+					<span style="font-size: 1.4em"><a href="#">social</a></span>
+					<span style="font-size: 1.5em"><a href="#">facebook</a></span>
+				</p>
+			</div>
+			<p class="info">Сайтын тухай...</p>
+		</div>
+		<div class="footer">
+			Dart league
+		</div>		
+	</div>
+</body>
+</html>

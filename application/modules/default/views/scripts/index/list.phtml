@@ -1,0 +1,51 @@
+<div class="bs-docs-example">
+
+<?php echo $this->search;?>
+<table>
+<tr>
+<th>Нийт оноо</th>
+<th>Зураг</th>
+<th>Мэдээлэл</th>
+</tr>
+<?php 
+foreach ($this->data as $user){
+	?>
+	
+	<tr style="clear:both;">
+	<td>
+	<h1>
+	<?php echo $user['score']?>
+	</h1>
+	</td>
+	<td>
+	<?php
+	if ($user['image']!=NULL){
+	echo '<a class="pull-left" href="'.$this->url(array('module'=>'admin',
+											'controller'=>'users',
+											'action'=>'profile',
+											'id'=>$user['id'])).'"><img class="media-object"  width="100" src="'.$this->baseUrl().'/data/'.$user['image'].'"></a>';
+	}
+	?>
+	</td>
+	<td style="padding-left: 10px">
+	<?php 
+	echo $user['lastname'];
+	echo '</br>'.$user['firstname'];
+	echo '</br>'.$user['age'];
+	echo '</br>'.$user['sex'];
+	echo '</br>'.$user['email'];
+	echo '</br>'.$user['date'];
+	?>
+	</td>
+	</tr>
+	
+	<?php
+}
+?>
+</table>
+<div class="pagination pagination-mini">
+<?php 
+	echo $this->paginationControl($this->data,'Sliding','pagination.phtml'); 
+?>
+</div>
+</div>

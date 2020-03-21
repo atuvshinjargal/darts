@@ -1,0 +1,18 @@
+
+<h4>Sign up</h4>
+<?php
+
+if(isset($this->errorMessage)){
+
+            echo $this->errorMessage;
+
+}?>
+<?php
+if(isset($this->success)){
+          echo 'Succesfully sign up. <a href="'.$this->url(array('module'=>'default',
+											'controller'=>'autentication',
+											'action'=>'login')).'">Login</a>';
+}?>
+<?php
+echo $this->regform;
+?>

@@ -1,0 +1,40 @@
+
+<table class="contest">
+  <tr>
+    <th>Тэмцээн</th>
+    <th>Үүсгэсэн огноо</th>
+    <th>Эхлэх огноо</th>
+    <th>Дууссан огноо</th>
+  </tr>
+<?php 
+foreach ($this->data as $user){?>
+	<tr <?php if ($user['finisdate']!="3000-00-00"){ echo 'style="color:blue"';}
+				else{
+					if (strtotime($user['startdate'])<strtotime('now')){
+							echo 'style="color:green"';
+						}
+					}?>>
+	<?php
+	echo '<td><a href="'.$this->url(array('module'=>'admin',
+											'controller'=>'book',
+											'action'=>'index',
+											'contest'=>$user['id'])).'">'.$user['name'].'</a></td>';
+	echo '<td>'.$user['date'].'</td>';
+	echo '<td>'.$user['startdate'].'</td>';
+	if ($user['finisdate']!="3000-00-00"){
+		echo '<td>'.$user['finisdate'].'</td>';
+	}else {
+		if (strtotime($user['startdate'])<strtotime('now')){
+			echo '<td>дуусаагүй</td>';
+		}else{
+			echo '<td>эхлээгүй</td>';
+		}
+	}
+}
+?>
+</table>
+<div class="pagination pagination-mini">
+<?php 
+	echo $this->paginationControl($this->data,'Sliding','pagination.phtml'); 
+?>
+</div>
